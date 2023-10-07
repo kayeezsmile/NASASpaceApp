@@ -1,0 +1,113 @@
+[
+    {
+        "databaseColumnName": "pl_name",
+        "tableLabel": "Planet Name",
+        "description": "Planet name most commonly used in the literature",
+        "usedInQuery": true,
+        "usedInForm": false,
+        "dataType": "text"
+    },
+    {
+        "databaseColumnName": "hostname",
+        "tableLabel": "Host Name",
+        "description": "Stellar name most commonly used in the literature",
+        "usedInQuery": true,
+        "usedInForm": false,
+        "dataType": "text"
+    },
+    {
+        "databaseColumnName": "disc_facility",
+        "tableLabel": "Discovery Facility",
+        "description": "Name of facility of planet discovery observations",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "text"
+    },
+    {
+        "databaseColumnName": "discoverymethod",
+        "tableLabel": "Discovery Method",
+        "description": "Method by which the planet was first identified",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "text"
+    },
+    {
+        "databaseColumnName": "disc_year",
+        "tableLabel": "Discovery Year",
+        "description": "Year the planet was discovered",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 1998,
+        "maxValue": 2020,
+        "scaleStep": 1
+    },
+    {
+        "databaseColumnName": "pl_orbper",
+        "tableLabel": "Orbital Period",
+        "description": "Time the planet takes to make a complete orbit around the host star or system",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 350,
+        "scaleStep": 0.1,
+        "unit": "days"
+    },
+    {
+        "databaseColumnName": "pl_orbsmax",
+        "tableLabel": "Orbit Semi-Major Axis",
+        "description": "The longest radius of an elliptic orbit, or, for exoplanets detected via gravitational microlensing or direct imaging, the projected separation in the plane of the sky",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 1.5,
+        "scaleStep": 0.005,
+        "unit": "AU"
+    },
+    {
+        "databaseColumnName": "pl_masse",
+        "tableLabel": "Planet Mass",
+        "description": "Amount of matter contained in the planet, measured in units of masses of the Earth",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 9000,
+        "scaleStep": 0.5,
+        "unit": "M⊕"
+    },
+    {
+        "databaseColumnName": "pl_rade",
+        "tableLabel": "Planet Radius",
+        "description": "Length of a line segment from the center of the planet to its surface, measured in units of radius of the Earth",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 25,
+        "scaleStep": 0.25,
+        "unit": "R⊕"
+    },
+    {
+        "databaseColumnName": "pl_dens",
+        "tableLabel": "Planet Density",
+        "description": "Amount of mass per unit of volume of the planet",
+        "usedInQuery": true,
+        "usedInForm": true,
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 35,
+        "scaleStep": 0.1,
+        "unit": "g/cm³"
+    },
+    {
+        "databaseColumnName": "releasedate",
+        "tableLabel": "Release Date",
+        "description": "Date that the given planet parameter set was publicly released by the NASA Exoplanet Archive",
+        "usedInQuery": true,
+        "usedInForm": false,
+        "dataType": "date"
+    }
+]
