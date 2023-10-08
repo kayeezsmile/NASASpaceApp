@@ -124,7 +124,7 @@ export default function PlanetDetailModal( { data, nasaData, tableColumns, isOpe
     }
 
     const onScreenButtonClick = () => {
-      window.open("https://nasa-screen.unseenidentity.xyz")
+      window.open(`https://nasa-screen.unseenidentity.xyz?ref=${refId}`)
     }
 
     const formatResult = (text: string) => {
