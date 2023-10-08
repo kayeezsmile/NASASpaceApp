@@ -174,8 +174,8 @@ export default function PlanetDetailModal( { data, nasaData, tableColumns, isOpe
               <h1>Congratulations, Exoplanet explorer! You've discovered your dream exoplanet. Now, let's customize your journey!</h1>
             </Grid>
             <Grid item xs={12} sm={6} container direction='column'>
-              <p>Exoplanet Name: <span className={classes.planetName}>{nasaData.display_name}</span></p>
-              <p>{nasaData.description}</p>
+              <p>Exoplanet Name: {nasaData ? (<span className={classes.planetName}>{nasaData.display_name}</span>): (<span className={classes.planetName}>{data.pl_name}</span>)}</p>
+              {nasaData && <p>{nasaData.description}</p>}
               <Aladin target={data.pl_name} />
             </Grid>
             <Grid item xs={12} sm={6} container direction='column'>
