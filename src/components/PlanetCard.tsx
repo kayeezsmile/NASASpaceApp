@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     dataRow: {
         marginTop: '4px',
         marginBottom: '4px'
+    }, 
+    explore: {
+        fontWeight: 'bold',
+        color: 'blue',
     }
 });
 
@@ -85,7 +89,7 @@ export default function PlanetCard( { data, nasaData, tableColumns, refId }: Pro
                 className={classes.card}
                 onClick={() => setOpen(true)}
             >
-                <p>Click to Explore</p>
+                <p className={classes.explore}>Click to Explore</p>
                 <img
                     src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
                     className={classes.planetIcon}
