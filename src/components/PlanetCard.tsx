@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,9 +8,13 @@ import getRoundedValue from '../functions/getRoundedValue';
 import { Entry } from '../interfaces/Entry';
 import { TableColumn } from '../interfaces/TableColumn';
 
+import PlanetDetailModal from './PlanetDetailModal';
+
 type Props = {
     data: Entry,
-    tableColumns: TableColumn[]
+    nasaData: Entry,
+    tableColumns: TableColumn[],
+    refId: string,
 }
 
 const useStyles = makeStyles({
@@ -33,7 +37,9 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetCard( { data, tableColumns }: Props ) {
+export default function PlanetCard( { data, nasaData, tableColumns, refId }: Props ) {
+
+    const [open, setOpen] = useState(false);
 
     const classes = useStyles();
 
@@ -73,17 +79,22 @@ export default function PlanetCard( { data, tableColumns }: Props ) {
     const { pl_dens, pl_name } = data;
 
     return (
-        <Card 
-            variant="outlined"
-            className={classes.card}
-        >
-            <img
-                src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
-                className={classes.planetIcon}
-                alt="Planet"
-            />
-            <h4>{pl_name}</h4>
-            {dataForDisplay}
-        </Card>
+        <>
+            <Card 
+                variant="outlined"
+                className={classes.card}
+                onClick={() => setOpen(true)}
+            >
+                <p>Click to Explore</p>
+                <img
+                    src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
+                    className={classes.planetIcon}
+                    alt="Planet"
+                />
+                <h4>{pl_name}</h4>
+                {dataForDisplay}
+            </Card>
+            <PlanetDetailModal data={data} nasaData={nasaData} tableColumns={tableColumns} isOpen={open} setOpen={setOpen} refId={refId}/>
+        </>
     );
 }

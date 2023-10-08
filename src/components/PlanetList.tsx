@@ -12,13 +12,15 @@ import shouldEntryBeFilteredOut from '../functions/shouldEntryBeFilteredOut';
 
 type Props = {
     planetaryData: Entry[],
-    activeFilters: ActiveFilter[]
-    tableColumns: TableColumn[]
+    nasaData: any,
+    activeFilters: ActiveFilter[],
+    tableColumns: TableColumn[],
+    refId: string,
 }
 
 const useStyles = makeStyles({
     main: {
-        paddingTop: '100px'
+        paddingTop: '0px'
     },
     planetList: {
         display: 'flex',
@@ -30,7 +32,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetList( { planetaryData, activeFilters, tableColumns }: Props) {
+export default function PlanetList( { planetaryData, nasaData, activeFilters, tableColumns, refId }: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(24);
@@ -50,8 +52,10 @@ export default function PlanetList( { planetaryData, activeFilters, tableColumns
             planets.push(
                 <PlanetCard 
                     data={planetaryDataAfterFiltering[i]}
+                    nasaData={nasaData[planetaryDataAfterFiltering[i].pl_name]}
                     key={planetaryDataAfterFiltering[i].pl_name + '_' + i}
                     tableColumns={tableColumns}
+                    refId={refId}
                 />
             )
         }

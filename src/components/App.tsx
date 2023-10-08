@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse'
+import { v4 as uuidv4 } from 'uuid';
 
 import getQuery from '../functions/getQuery';
 import convertCsvToObject from '../functions/convertCsvToObject';
@@ -17,18 +18,35 @@ import Footer from './Footer';
 
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
+import { makeStyles } from '@material-ui/core/styles';
 
 // import exoplanetData from '../exoplanets.csv'
 
+const useStyles = makeStyles({
+    header: {
+        paddingTop: '80px',
+        fontSize: '2rem',
+        textAlign: 'center'
+    },
+    intro: {
+        textAlign: 'center'
+    }
+});
+
 export default function App() {
 
+    const refId = uuidv4();
+
     const [planetaryData, setPlanetaryData] = useState<Array<Entry>>();
+    const [nasaData, setNasaData] = useState<Entry>();
     const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
     const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
     // Test only. Will be removed in the final version.
     const isInDevelopment = false;
+
+    const classes = useStyles();
 
     useEffect(() => {
         if (isInDevelopment) {
@@ -77,6 +95,22 @@ export default function App() {
                      setPlanetaryData(strippedData);
                 }
             });
+
+            Papa.parse('exoplanets_nasa.csv', {
+                header: true,
+                download: true,
+                skipEmptyLines: true,
+                delimiter: ",",
+                complete: function (input) {
+                     console.log(input.data);
+                     const dataHash = {} as any
+                     for (const d of input.data) {
+                        const data = d as Entry;
+                        dataHash[`${data.pl_hostname} ${data.pl_letter}`] = d
+                     }
+                     setNasaData(dataHash);
+                }
+            });
             // GetData();
             // const strippedData = getUniquePlanets(convertedData);
             // setPlanetaryData(strippedData);
@@ -110,10 +144,17 @@ export default function App() {
                 activeFilters={activeFilters}
                 setActiveFilters={setActiveFilters}
             />
+            <div>
+                <h3 className={classes.header}>Welcome to ExoPlanet Explorer: Your Galactic Adventure Awaits! 🚀</h3>
+                <p className={classes.intro}>🌌 Choose Your Discovery Preferences from the Selection Panel 🌌</p>
+                <p className={classes.intro}>We'll reveal the exoplanets that best suit your preferences!</p>
+            </div>
             <PlanetList 
                 planetaryData={planetaryData}
+                nasaData={nasaData}
                 activeFilters={activeFilters}
                 tableColumns={tableColumns}
+                refId={refId}
             />
             <Footer/>
         </div> :

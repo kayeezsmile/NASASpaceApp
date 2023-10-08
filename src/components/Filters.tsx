@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     drawerPaper: {
         paddingLeft: '40px',
         paddingRight: '40px',
-        width: '340px'
+        width: '280px'
     }
 });
 
@@ -98,6 +98,7 @@ export default function Filters({
                 paper: classes.drawerPaper
             }}
         >
+            <p>Seek your dream exoplanet!</p>
             {inputs}
         </Drawer>
     );

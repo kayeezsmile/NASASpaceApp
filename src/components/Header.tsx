@@ -32,7 +32,6 @@ export default function Header( { isSidebarOpened, setIsSidebarOpened }: Props )
                 >
                     filter_list
                 </Icon>
-                <h3>Exoplanets Archive</h3>
             </Toolbar>
         </AppBar>
     );
