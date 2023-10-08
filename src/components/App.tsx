@@ -28,6 +28,10 @@ const useStyles = makeStyles({
         fontSize: '2rem',
         textAlign: 'center'
     },
+    subheader: {
+        fontSize: '1.5rem',
+        textAlign: 'center'
+    },
     intro: {
         textAlign: 'center'
     }
@@ -146,7 +150,7 @@ export default function App() {
             />
             <div>
                 <h3 className={classes.header}>Welcome to ExoPlanet Explorer: Your Galactic Adventure Awaits! 🚀</h3>
-                <p className={classes.intro}>🌌 Choose Your Discovery Preferences from the Selection Panel 🌌</p>
+                <p className={classes.subheader}>🌌 Choose Your Discovery Preferences from the Selection Panel on the left🌌</p>
                 <p className={classes.intro}>We'll reveal the exoplanets that best suit your preferences!</p>
             </div>
             <PlanetList 

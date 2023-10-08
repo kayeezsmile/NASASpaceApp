@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.2rem',
     },
     em3: {
-      fontSize: '0.75rem',
+      fontSize: '0.9rem',
     },
     theme: {
       border: 'solid red',
@@ -49,6 +49,17 @@ const useStyles = makeStyles((theme) => ({
     }, 
     themeEmpty: {
       border: 'none',
+    },
+    button: {
+      fontSize: '1.2rem'
+    },
+    resultBoard: {
+      border: 'solid grey',
+      borderRadius: '8px',
+    },
+    emptyResultBoard: {
+      border: 'none',
+      borderRadius: '8px',
     }
   }));
 
@@ -177,14 +188,14 @@ export default function PlanetDetailModal( { data, nasaData, tableColumns, isOpe
               <p>Exoplanet Name: {nasaData ? (<span className={classes.planetName}>{nasaData.display_name}</span>): (<span className={classes.planetName}>{data.pl_name}</span>)}</p>
               {nasaData && <p>{nasaData.description}</p>}
               <Aladin target={data.pl_name} />
+              <br/>
+              <Button variant={selectedBtn === 1 ? "contained" : "outlined"} onClick={()=>{setSelectedBtn(1); onGenerateResult();}} className={classes.button}>01  🌿 Planet Life</Button>
+              <br/>
+              <Button variant={selectedBtn === 2 ? "contained" : "outlined"} onClick={()=>{setSelectedBtn(2); onGenerateResult();}} className={classes.button}>02  🚀 Your Survival Quest</Button>
             </Grid>
             <Grid item xs={12} sm={6} container direction='column'>
               <h2>🌟 Pick Your Exploration Style 🌟</h2>
               <p>Ready to embark on your Exoplanet Explorer journey? we're just checking to ensure you're prepared for this interstellar voyage!</p>
-              <br/>
-              <p className={classes.em1}>Unlock Your Personalized Survival Quest in Seconds</p>
-              <p className={classes.em2}>We use the insights from the 30-second Neuroscience Generative AI Screening to personalize your experience to your distinct cognitive abilities, equipping you to navigate habitability challenges on this exoplanet, intrinsically linked to a one-of-a-kind personalized journey!</p>
-              <p className={classes.em3}>It is a generative scientific screening model crafted with an experimental spirit, with our continuous dedication to achieving predictive precision in behavioural signal detection, as you engage with gamified scientific stimuli on the screen to assess your behavioural performance and cognitive traits. No sensors or text input required.</p>
               <TextField id="standard-basic" label="Name" value={name} onChange={handeleNameChange}/>
               <br/>
               <FormControl className={classes.theme}>
@@ -205,25 +216,26 @@ export default function PlanetDetailModal( { data, nasaData, tableColumns, isOpe
                 </Select>
               </FormControl>
               <br/>
+              <p className={classes.em1}>Unlock Your Personalized Survival Quest in Seconds</p>
               <Button variant="contained" color="primary" onClick={onScreenButtonClick}>
                 Get Your 30-second Screening Result
               </Button>
+              <br/>
+              <p className={classes.em2}>We use the insights from the 30-second Neuroscience Generative AI Screening to personalize your experience to your distinct cognitive abilities, equipping you to navigate habitability challenges on this exoplanet, intrinsically linked to a one-of-a-kind personalized journey!</p>
+              <p className={classes.em3}>It is a generative scientific screening model crafted with an experimental spirit, with our continuous dedication to achieving predictive precision in behavioural signal detection, as you engage with gamified scientific stimuli on the screen to assess your behavioural performance and cognitive traits. No sensors or text input required.</p>
               <p>Reveal your unique persona and present emotions, precisely determined through our 30-second scientific screening process.</p>
               <p className={classes.em3}>Within seconds, our scientifically designed gamified stimuli will interact with you on the screen, and instantly reveal incredible insight about you and personalize your input content.</p>
             </Grid>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={12} className={selectedBtn == -1 ? classes.emptyResultBoard : classes.resultBoard}>
               {
                 generating && <p>Generating...</p>
               }
               {selectedBtn === 1 && <div dangerouslySetInnerHTML={{__html: resultLife.join('')}} /> }
               {selectedBtn === 2 && <div dangerouslySetInnerHTML={{__html: resultQuest.join('')}} />}
+            </Grid>
+            {/* <Grid item xs={12} sm={4} container direction='column' spacing={2} alignContent='flex-start'>
               
-            </Grid>
-            <Grid item xs={12} sm={4} container direction='column' spacing={2} alignContent='flex-start'>
-              <Button variant={selectedBtn === 1 ? "contained" : "outlined"} onClick={()=>{setSelectedBtn(1); onGenerateResult();}}>01  🌿 Planet Life</Button>
-              <br/>
-              <Button variant={selectedBtn === 2 ? "contained" : "outlined"} onClick={()=>{setSelectedBtn(2); onGenerateResult();}}>02  🚀 Your Survival Quest</Button>
-            </Grid>
+            </Grid> */}
           </Grid>
           {/* <h2 id="simple-modal-title">{nasaData.display_name}</h2>
           <p id="simple-modal-description">
