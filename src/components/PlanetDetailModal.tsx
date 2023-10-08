@@ -81,15 +81,15 @@ const Themes: {[key: string]: string} = {
 
 
 const getLifePrompt = (name: String, description: String) => {
-  return `Based on the exoplanet description below, write different sections about what life might be like on the exoplanet with section titles 1) Introduction 2) Surface and Landscape 3) Climate and Atmosphere 3) Water Availability 4) Biodiversity and Wildlife - name the planet ${name}, ${description}, Your challenge is to use publicly available information on exoplanets to write about what life might be like on it. Is it too hot, too cold, or just right? How much water is available? What does the surface of your planet look like?`;
+  return `Based on the exoplanet description below, write different sections about what life might be like on the exoplanet with section titles 1) Introduction 2) Surface and Landscape 3) Climate and Atmosphere 3) Water Availability 4) Biodiversity and Wildlife - name the planet ${name}, ${description}, Your challenge is to use publicly available information on exoplanets to write about what life might be like on it. Is it too hot, too cold, or just right? How much water is available? What does the surface of your planet look like? Please limit the response in 15 sentences.`;
 }
 
 const getQuestPrompt = (theme: String, name: String) => {
-  return `Please write paragraphs with attractive plot titles and analyse the possibility of human living there and all the good and bad things that he may face,  try to imagine a person with the below attributes going through a ${theme} story on this planet and write a short story about it and the person's name is ${name} -  The person's Skills and Abilities and corresponding Soft Skills and Cognitive Performance Competence are as follows:`
+  return `Please write paragraphs with attractive plot titles and analyse the possibility of human living there and all the good and bad things that he may face, Please limit the response in 15 sentences and try to imagine a person with the below attributes going through a ${theme} story on this planet and write a short story about it and the person's name is ${name} -  The person's Skills and Abilities and corresponding Soft Skills and Cognitive Performance Competence are as follows:`
 }
 
 const endpoint = "https://nasa-api.unseenidentity.xyz/api/v1/cv/result";
-// const endpoint = "http://localhost:5000/api/v1/cv/result";
+// const endpoint = "http://localhost:15006/api/v1/cv/result";
 
 export default function PlanetDetailModal( { data, nasaData, tableColumns, isOpen, setOpen, refId }: Props ) {
 
